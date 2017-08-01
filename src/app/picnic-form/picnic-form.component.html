@@ -1,24 +1,28 @@
-<div class="container">
-  <hr>
-  <h1 class="text-center">*** Boeing Company Picnic ***</h1>
+<div class="container" id="top">
+  <br>
+  <div class="text-center">
+    <h1>*** Boeing Company Picnic ***</h1>
+    <h3>August 10, 2017 </h3>
+    <p><i>(Please also list any dietary concerns, i.e., nuts or meat products)</i></p>
+  </div>
   <hr>
 
   <div class="container">
     <div class="row">
-      <h2 class="text-center d-inline col-6"><u>Food</u></h2>
+      <h2 class="text-center d-inline col-6"><u>Company Provided Items</u></h2>
       <h2 class="text-center d-inline col-6"><u>Drinks</u></h2>
     </div>
     <div class="row">
       <div class="d-inline-block col-6">
-        <div class="bg-warning text-center" *ngFor="let food of foodItem">
+        <div class="text-center" *ngFor="let cpi of item['CompanyProvided']">
           <div class="row">
-            <h5 class="d-inline col-6">{{food.item}}</h5>
-            <h5 class="d-inline col-6">{{food.name}}</h5>
+            <h5 class="d-inline col-6">{{cpi.item}}</h5>
+            <h5 class="d-inline col-6">{{cpi.name}}</h5>
           </div>
         </div>
       </div>
       <div class="d-inline-block col-6">
-        <div class="bg-danger text-center" *ngFor="let drink of drinkItem">
+        <div class="text-center" *ngFor="let drink of item['Drinks']">
           <div class="row">
             <h5 class="d-inline col-6">{{drink.item}}</h5>
             <h5 class="d-inline col-6">{{drink.name}}</h5>
@@ -33,11 +37,11 @@
   <div class="container">
     <div class="row">
       <h2 class="text-center d-inline col-6"><u>Games</u></h2>
-      <h2 class="text-center d-inline col-6"><u>Extra</u></h2>
+      <h2 class="text-center d-inline col-6"><u>Side</u></h2>
     </div>
     <div class="row">
       <div class="d-inline-block col-6">
-        <div class="bg-success text-center" *ngFor="let game of gamesItem">
+        <div class="text-center" *ngFor="let game of item['Games']">
           <div class="row">
             <h5 class="d-inline col-6">{{game.item}}</h5>
             <h5 class="d-inline col-6">{{game.name}}</h5>
@@ -45,10 +49,10 @@
         </div>
       </div>
       <div class="d-inline-block col-6">
-        <div class="bg-primary text-center" *ngFor="let extra of extraItem">
+        <div class="text-center" *ngFor="let side of item['Side']">
           <div class="row">
-            <h5 class="d-inline col-6">{{extra.item}}</h5>
-            <h5 class="d-inline col-6">{{extra.name}}</h5>
+            <h5 class="d-inline col-6">{{side.item}}</h5>
+            <h5 class="d-inline col-6">{{side.name}}</h5>
           </div>
         </div>
       </div>
@@ -59,7 +63,7 @@
 
   <div class="container">
     <h2 class="text-center"><u>Dessert</u></h2>
-    <div class="row bg-info text-center" *ngFor="let dessert of dessertItem">
+    <div class="row text-center" *ngFor="let dessert of item['Dessert']">
       <h5 class="d-inline col-6">{{dessert.item}}</h5>
       <h5 class="d-inline col-6">{{dessert.name}}</h5>
     </div>
@@ -68,11 +72,11 @@
   <hr>
 
   <div class="container">
-    <form>
+    <form (ngSubmit)="onSubmit()" #td="ngForm">
       <div class="form-group col-3 d-inline">
         <span>Category: </span>
         <label for="category">
-          <select class="form-control" id="category" required>
+          <select class="form-control" id="category" name="category" required ngModel>
             <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
           </select>
         </label>
@@ -84,7 +88,9 @@
           class="form-control"
           type="text"
           name="item"
-          placeholder="Item Bringing Here">
+          placeholder="Item Bringing Here"
+          required
+          ngModel>
         </label>
       </div>
       <div class="form-group col-3 d-inline">
@@ -94,12 +100,22 @@
           class="form-control"
           type="text"
           name="name"
-          placeholder="Your Name Here">
+          placeholder="Your Name Here"
+          required
+          ngModel>
         </label>
       </div>
-      <button type="submit" class="btn btn-primary">Sign up</button>
+
+      <button type="submit" [disabled]="td.invalid" class="col-2 btn btn-primary">Submit</button>
+
     </form>
   </div>
 
-  <hr>
 </div>
+
+<!-- 
+<form (ngSubmit)="onSubmit(td)" #td="ngForm">
+  ...
+  <button type="submit" [disabled]="td.invalid" class="col-2 btn btn-primary">Submit</button>
+</form>     
+ -->

@@ -1,33 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-picnic-form',
   templateUrl: './picnic-form.component.html',
   styleUrls: ['./picnic-form.component.css']
 })
-export class PicnicFormComponent implements OnInit {
-  //Different Picnic Categories
-  categories = ['Dessert','Games','Drinks','Food','Extra'];
 
-  dessertItem: PicnicItem[];
-  gamesItem: PicnicItem[];
-  foodItem: PicnicItem[];
-  extraItem: PicnicItem[];
-  drinkItem: PicnicItem[];
+export class PicnicFormComponent implements OnInit {
+  //Submit form reference
+  @ViewChild('td') picnicForm: NgForm;
+
+  //Different Picnic Categories
+  categories = ['Dessert','Games','Drinks','Side'];
+
+  item = {
+    'Dessert':[],
+    'Games':[],
+    'Drinks':[],
+    'Side':[],
+    'CompanyProvided':[]
+  };
 
   constructor() { }
 
   ngOnInit() {
-    this.gamesItem = [{'item':'Bean Bag','name':'Jeff C.'},{'item':'Stereo System','name':'Chang G.'}];
-    this.extraItem = [];
-    this.dessertItem = [{'item':'Cookie Monster','name':'Oscar K.'}];
-    this.drinkItem = [{'item':'Patron','name':'Bob P.'}];
-    this.foodItem = [{'item':'Brisket','name':'Boeing'}];
+    this.item['Games'] = [{'item':'Bean Bag Toss','name':'Jeff C.'},{'item':'Piñata ;)','name':'Chang G.'}];
+    this.item['Drinks'] = [];
+    this.item['Dessert'] = [{'item':'Hot Fudge Sundaes with Sprinkles 0_0','name':'Oscar K.'}];
+    this.item['Side'] = [];
+    this.item['CompanyProvided'] = [
+        {'item':'Tri-tip, Chicken & Vegetarian Entree','name':'Boeing'},
+        {'item':'Plates, napkins, utensils','name':'Boeing'},
+        {'item':'Water','name':'Boeing'}
+    ];
   }
 
+  onSubmit(){
+    var picItem = this.picnicForm.value;
+    this.item[picItem.category].push(
+      {'item':picItem.item,'name':picItem.name}
+    );
+    this.picnicForm.reset();
+  }
+
+
 }
 
-interface PicnicItem{
-  item: string,
-  name: string
-}
+
