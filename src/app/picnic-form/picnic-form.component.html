@@ -1,0 +1,105 @@
+<div class="container">
+  <hr>
+  <h1 class="text-center">Boeing Company Picnic</h1>
+  <hr>
+
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center d-inline col-6"><u>Food</u></h2>
+      <h2 class="text-center d-inline col-6"><u>Drinks</u></h2>
+    </div>
+    <div class="row">
+      <div class="d-inline-block col-6">
+        <div class="bg-warning text-center" *ngFor="let food of foodItem">
+          <div class="row">
+            <h5 class="d-inline col-6">{{food.item}}</h5>
+            <h5 class="d-inline col-6">{{food.name}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block col-6">
+        <div class="bg-danger text-center" *ngFor="let drink of drinkItem">
+          <div class="row">
+            <h5 class="d-inline col-6">{{drink.item}}</h5>
+            <h5 class="d-inline col-6">{{drink.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <h2 class="text-center d-inline col-6"><u>Games</u></h2>
+      <h2 class="text-center d-inline col-6"><u>Extra</u></h2>
+    </div>
+    <div class="row">
+      <div class="d-inline-block col-6">
+        <div class="bg-success text-center" *ngFor="let game of gamesItem">
+          <div class="row">
+            <h5 class="d-inline col-6">{{game.item}}</h5>
+            <h5 class="d-inline col-6">{{game.name}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block col-6">
+        <div class="bg-primary text-center" *ngFor="let extra of extraItem">
+          <div class="row">
+            <h5 class="d-inline col-6">{{extra.item}}</h5>
+            <h5 class="d-inline col-6">{{extra.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="container">
+    <h2 class="text-center"><u>Dessert</u></h2>
+    <div class="row bg-info text-center" *ngFor="let dessert of dessertItem">
+      <h5 class="d-inline col-6">{{dessert.item}}</h5>
+      <h5 class="d-inline col-6">{{dessert.name}}</h5>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container">
+    <form>
+      <div class="form-group col-3 d-inline">
+        <span>Category: </span>
+        <label for="category">
+          <select class="form-control" id="category" required>
+            <option *ngFor="let cat of categories" [value]="cat">{{cat}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="form-group col-3 d-inline">
+        <span>Item:</span>
+        <label>
+          <input
+          class="form-control"
+          type="text"
+          name="item"
+          placeholder="Item Bringing Here">
+        </label>
+      </div>
+      <div class="form-group col-3 d-inline">
+        <span>Name:</span>
+        <label>
+          <input
+          class="form-control"
+          type="text"
+          name="name"
+          placeholder="Your Name Here">
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+  </div>
+
+  <hr>
+</div>
