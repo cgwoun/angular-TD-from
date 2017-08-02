@@ -27,7 +27,7 @@ export class PicnicFormComponent implements OnInit {
   ngOnInit() {
     this.item['Games'] = [{'item':'Bean Bag Toss','name':'Jeff C.'},{'item':'Piñata ;)','name':'Chang G.'}];
     this.item['Drinks'] = [];
-    this.item['Dessert'] = [{'item':'Hot Fudge Sundaes with Sprinkles 0_0','name':'Oscar K.'}];
+    this.item['Dessert'] = [{'item':'Hot Fudge Sundaes with Sprinkles 0_o','name':'Oscar K.'}];
     this.item['Side'] = [];
     this.item['CompanyProvided'] = [
         {'item':'Tri-tip, Chicken & Vegetarian Entree','name':'Boeing'},
